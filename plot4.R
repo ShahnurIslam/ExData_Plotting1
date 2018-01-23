@@ -1,5 +1,4 @@
 setwd('C:/Users/shahnur islam/Desktop/UCI HAR Dataset/')
-library(lubridate)
 data <- read.csv("household_power_consumption.txt",sep = ";", stringsAsFactors = FALSE, na.strings = "?")
 data$datetime <- strptime(paste(data$Date,data$Time), "%d/%m/%Y %H:%M:%S")
 data$Date <- as.POSIXct(strptime(data$Date, "%d/%m/%Y"))
@@ -11,8 +10,8 @@ with(data,plot(datetime,Voltage, type ="l", ylab = "Voltage"))
 with(data,plot(datetime,Sub_metering_1, type ="l",xlab = "", ylab = "Energy Sub Metering"))
 lines(data$datetime,data$Sub_metering_2,col="red")
 lines(data$datetime,data$Sub_metering_3,col="blue")
-legend(x = "topright",y = 0.92,legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
-       col=c("black","red","blue"), lty = 1, cex = 0.75)
+legend("topright", cex=0.5, bty="o", col= c("black", "red", "blue"), lty="solid",
+       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 with(data,plot(datetime,Global_reactive_power, type ="l", ylab = "Global_reactive_power"))
 dev.copy(png,"plot4.png")
 dev.off()
